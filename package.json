@@ -11,16 +11,26 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.10",
+    "@gsap/react": "^2.1.0",
+    "@metamask/jazzicon": "^2.0.0",
+    "@metamask/sdk-react": "^0.14.2",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
     "ethers": "^6.10.0",
     "graphql": "^16.8.1",
+    "gsap": "^3.12.5",
     "react": "^18.2.0",
+    "react-animate-on-scroll": "^2.1.7",
     "react-dom": "^18.2.0",
+    "react-metamask-avatar": "^2.0.9",
     "react-router-dom": "^6.21.3",
-    "react-toastify": "^10.0.4"
+    "react-toastify": "^10.0.4",
+    "smooth-scrollbar": "^8.8.4",
+    "smooth-scrollbar-react": "^2.4.1",
+    "swiper": "^11.0.6"
   },
   "devDependencies": {
+    "@types/gsap": "^3.0.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",

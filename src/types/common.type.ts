@@ -1,7 +1,7 @@
 export type tokenType = {
-  id: string;
   nftAddress: string;
   tokenId: string;
+  tokenURI: string;
 };
 export type IPFSResponseType = {
   IpfsHash: string;
@@ -9,10 +9,25 @@ export type IPFSResponseType = {
   Timestamp: string;
 };
 export type ResType = {
-    data: string;
+  data: string;
 };
 export type attributeType = {
   display_type?: string;
   trait_type: string;
-  value: number;
+  value: number | string;
 };
+export type nftType = {
+  image: string;
+  name: string;
+  description: string;
+  attributes?: attributeType[];
+};
+export enum LocalStorageEnum {
+  ACTIVE_ADDRESS = "ACTIVE_ADDRESS",
+  ADDRESSES = "ADDRESSES",
+  THEME = "THEME",
+}
+export enum CardEnum {
+  OWNER = "OWNER",
+  LISTED = "LISTED",
+}

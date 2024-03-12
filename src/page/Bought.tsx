@@ -2,7 +2,7 @@ import { tokenBoughtsType } from '../types'
 import { GET_TOKENS_BOUGHT } from '../graphql'
 import { useQuery } from '@apollo/client'
 import * as ethers from "ethers"
-import { useAction, useStore } from '../hooks'
+import { useAction, useStore } from '../hook'
 import { NftMarketplaceContract } from '../helper'
 import { address as NFTAddress } from "../utils/contracts/NFT.json"
 

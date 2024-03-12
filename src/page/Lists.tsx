@@ -3,7 +3,7 @@ import { activeItemsType, itemListedsType } from "../types";
 import { GET_ACTIVE_ITEMS, GET_TOKENS_LISTED } from "../graphql";
 import { useQuery } from "@apollo/client";
 import * as ethers from "ethers";
-import { useAction, useStore } from "../hooks";
+import { useAction, useStore } from "../hook";
 import { NftMarketplaceContract, getTokenListes } from "../helper";
 import { address as NFTAddress } from "../utils/contracts/NFT.json";
 import { Card } from "../component";

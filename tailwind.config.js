@@ -10,6 +10,7 @@ export default {
       themes: ["light"],
     },
     colors: {
+      'white': '#fff',
       'Red': '#C90E7E',
       'orange': '#FF8A00',
       'Yellow': '#FFD700',
@@ -17,7 +18,6 @@ export default {
       'Blue': '#4BCEFA',
       'Green': '#00925D',
       'C72': '#727272',
-      'white': '#dadada',
       'BGwhite': '#F9F9FB',
       'White3': '#F3F3F3',
       'C14': '#141414',

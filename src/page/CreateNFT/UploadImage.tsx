@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import selectImage from "../../assets/icon/select-image.png";
+import selectImage from "../../assets/img/nft.jpg";
+
 import { IPFS } from "../../service/api-ipfs";
-import { useAction } from "../../hooks";
+import { useAction } from "../../hook";
 type propsType = {
   IPFSURI: string;
   onUpload: (uri: string) => void;
@@ -50,7 +51,7 @@ export const UploadImage = ({ onUpload, IPFSURI }: propsType) => {
           onClick={() => setState({ ...state, isAi: false })}
           role="tab"
           className={`tab ${
-            !state.isAi ? "tab-active !bg-[#3b4654] text-C22" : ""
+            !state.isAi ? "tab-active !bg-base-200" : ""
           }`}
         >
           Select Image
@@ -59,13 +60,13 @@ export const UploadImage = ({ onUpload, IPFSURI }: propsType) => {
           onClick={() => setState({ ...state, isAi: true })}
           role="tab"
           className={`tab ${
-            state.isAi ? "tab-active !bg-[#3b4654] text-C22" : ""
+            state.isAi ? "tab-active !bg-base-200" : ""
           }`}
         >
           AI Gen
         </a>
       </div>
-      <div className="border flex-1 border-t-0 bg-[#3b4654] px-12 pb-8 border-C14 pt-12 relative overflow-hidden">
+      <div className="border flex-1 border-t-0 bg-base-200 px-12 pb-8 border-base-300 pt-12 relative overflow-hidden">
         <div className="w-full flex h-full justify-between flex-col items-center">
           {state.isAi ? (
             <div className="w-full">
@@ -103,7 +104,7 @@ export const UploadImage = ({ onUpload, IPFSURI }: propsType) => {
                 />
                 <img
                   src={!isImageExist ? selectImage : state.imgUrl}
-                  className="w-full h-full"
+                  className="w-full h-full grayscale-[0.8]"
                   alt="img"
                 />
                 {!isImageExist ? (

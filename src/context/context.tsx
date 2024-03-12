@@ -3,7 +3,9 @@ import { Actions, constextType, storeType } from "../types";
 import { reducer } from "./reducer";
 
 const initStore: storeType = {
+  isDark: false,
   activeAccount: "",
+  connectedAccounts: [],
   loading: {
     isLoading: false,
     message: null,

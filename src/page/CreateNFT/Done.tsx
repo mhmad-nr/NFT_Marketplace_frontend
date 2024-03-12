@@ -4,7 +4,7 @@ import { ReactComponent as PartySvg } from "../../assets/icon/party.svg";
 import { Link } from "react-router-dom";
 // import { ReactComponent as CelebrationSvg } from '../../assets/icon/celebration.svg?react'
 
-export const Done = () => {
+export const Done = ({ onRefresh }: { onRefresh: () => void }) => {
   return (
     <>
       <CelebrationSvg className="absolute top-0 left-96" />
@@ -32,9 +32,14 @@ export const Done = () => {
           </div>
           <div>
             <h2>Congratulations, your NFT has been successfully minted!</h2>
-            <Link to={"/"}>
-              
-            </Link>
+            <div className="w-full flex items-center justify-between mt-8">
+              <button onClick={onRefresh} className="btn btn-primary">
+                Create New!
+              </button>
+              <Link to={"/tokens"} className="btn btn-active">
+                See My Tokens
+              </Link>
+            </div>
           </div>
         </div>
       </div>

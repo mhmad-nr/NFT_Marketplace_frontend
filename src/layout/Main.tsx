@@ -1,13 +1,18 @@
-import React, { PropsWithChildren } from "react";
-import { Navbar } from "../component";
+import { PropsWithChildren } from "react";
 import Loading from "../component/Loading";
+import { Footer } from "../component/Footer";
+import { NavLayout } from "./Nav";
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
+  console.log("adasdasd55555555555");
+  
   return (
-    <div className="relative">
-      <Navbar />
-      <div className="w-full mt-0 h-[calc(100vh-69px)]">{children}</div>
-      <Loading />
-    </div>
+    <>
+      <NavLayout>
+        <main>{children}</main>
+        <Footer />
+        <Loading />
+      </NavLayout>
+    </>
   );
 };

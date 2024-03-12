@@ -16,25 +16,26 @@ export const useAction = () => {
     });
   };
   const initAccounts = (
-    activeAccount: accountType
-    // accounts: accountType[]
+    accounts: accountType[],
+    activeAccount?: accountType
   ) => {
     setStore({
       type: ActionKind.INIT_ACCOUNTS,
       payload: {
+        accounts,
         activeAccount,
         // accounts
       },
     });
   };
   const readAccounts = (
-    activeAccount: accountType
+    activeAccount: accountType[]
     //  accounts: accountType[]
   ) => {
     setStore({
       type: ActionKind.INIT_ACCOUNTS,
       payload: {
-        activeAccount,
+        accounts: activeAccount,
         // accounts
       },
     });
@@ -63,6 +64,14 @@ export const useAction = () => {
       payload: {},
     });
   };
+  const changeTheme = (isDark?:string) => {
+    setStore({
+      type: ActionKind.CHANGE_THEME,
+      payload: {
+        isDark,
+      },
+    });
+  };
   return {
     changeAccount,
     initAccounts,
@@ -71,5 +80,6 @@ export const useAction = () => {
     setMessageLoading: setLoading,
     setNotLoading,
     addCard,
+    changeTheme,
   };
 };

@@ -7,6 +7,13 @@
   margin: 0;
   padding: 0;
   user-select: none;
+  /* scroll-behavior: smooth; */
+}
+.bg-shadow {
+  @apply bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40;
+}
+#root {
+  position: relative;
 }
 .step {
   min-height: 8rem !important;
@@ -14,3 +21,190 @@
 .create-nft-pack {
   border-radius: 0px 0px 10px 10px;
 }
+
+.outer {
+  width: 99vw;
+  height: 80vh;
+  position: relative;
+}
+.inner-1 {
+  aspect-ratio: 1;
+  width: max(240px, 20vw);
+  position: absolute;
+  left: min(-125px, -10vw);
+  top: 40vh;
+  border-radius: 50%;
+  background-color: #fafafa;
+  filter: blur(4px);
+}
+.inner-1 {
+  box-shadow: inset 0 0 100px -30px #fafafa,
+    inset 0px 0px max(60px, 6vw) max(60px, 6vw) #ffb74b, 0 0 120px 80px #ffb74b;
+}
+.inner-2 {
+  width: min(1440px, 100%);
+  position: absolute;
+  aspect-ratio: 1;
+  top: max(-720px, -50vw);
+  right: max(-720px, -50vw);
+  border-radius: 50%;
+  background-color: #fafafa;
+  filter: blur(4px);
+  box-shadow: inset 0 0 100px -30px #fafafa,
+    inset 0px 0px 30vw 30vw rgb(255 109 109), 0 0 120px 80px rgb(255 109 109);
+}
+.inner-3 {
+  aspect-ratio: 1;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fafafa;
+  filter: blur(4px);
+  width: min(430px, 30vw);
+  bottom: 40px;
+  left: 100px;
+  opacity: 0.6;
+  box-shadow: inset 0 0 100px -30px #fafafa,
+    inset 0px 0px max(70px, 8vw) max(70px, 8vw) #569affb3,
+    0 0 120px 80px #569affb3;
+}
+.inner-4 {
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  width: min(576px, 40vw);
+  border-radius: 50%;
+  background-color: rgb(250, 250, 250);
+  filter: blur(4px);
+  bottom: 0px;
+  opacity: 1;
+  bottom: 10vh;
+  right: 10vw;
+  box-shadow: rgb(250, 250, 250) 0px 0px 100px -40px inset,
+    rgb(136, 223, 171) 0px 0px max(70px, 12vw) max(70px, 12vw) inset,
+    rgb(136, 223, 171) 0px 0px 70px 40px;
+}
+
+:root {
+  --bg-pos-x: 0;
+  --animation-duration: 20s;
+  --bg-size-x: 20em;
+}
+/* I can't use tailwind.config.js in CodePen, so I add my classes */
+.leading-huge-text {
+  line-height: 0.9;
+}
+.grid-rows-min {
+  grid-template-rows: repeat(auto-fill, min-content);
+}
+.current-color {
+  accent-color: rgba(130, 221, 53, 1);
+}
+/* corresponds to tailwind md size */
+@media (max-width: 768px) {
+  .current-color {
+    accent-color: rgba(235, 174, 15, 1);
+  }
+}
+.bg-rainbow {
+  background-size: var(--bg-size-x) 100%;
+  background-image: linear-gradient(
+    to left in hsl,
+    hsl(359deg, 100%, 50%),
+    hsl(180deg, 100%, 50%),
+    hsl(0deg, 100%, 50%)
+  );
+}
+.animate-hue {
+  animation: animate-hue var(--animation-duration) infinite linear;
+}
+.animate-bg {
+  animation: animate-bg var(--animation-duration) infinite linear;
+}
+@keyframes animate-bg {
+  from {
+    background-position: calc(var(--bg-pos-x) * var(--text-w)) 0;
+  }
+  to {
+    background-position: calc(
+        100% - var(--text-w) + calc(var(--bg-pos-x) * var(--text-w))
+      )
+      0;
+  }
+}
+@keyframes animate-hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+::-webkit-slider-runnable-track {
+  background: #f1f1f1;
+  border-radius: 1rem;
+  padding: 0.1rem 0.2rem;
+}
+.rotatee-1 {
+  /* position: relative; */
+  top: -5rem;
+  left: -5rem;
+  transform: rotateX(35deg) rotateZ(20deg) skewY(-8deg);
+}
+.rotatee-2 {
+  top: 0;
+  left: 0;
+  transform: rotateX(35deg) rotateZ(20deg) skewY(-8deg);
+}
+.rotatee-3 {
+  top: 5rem;
+  left: 5rem;
+  transform: rotateX(35deg) rotateZ(20deg) skewY(-8deg);
+}
+
+.back {
+  background-image: url("./assets/icon/ffflux.svg");
+}
+/* 
+@import url("https://fonts.googleapis.com/css?family=Cairo");
+
+.title {
+  font-family: "Cairo";
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+.bg-gha {
+  background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  /* text-transform: uppercase;
+  font-size: 120px;
+  margin: 10px 0; */
+/* } */
+/* styling my button */
+/* 
+.white-mode {
+  text-decoration: none;
+  padding: 7px 10px;
+  background-color: #122;
+  border-radius: 3px;
+  color: #fff;
+  transition: 0.35s ease-in-out;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  font-family: "Montserrat";
+}
+
+.white-mode:hover {
+  background-color: #fff;
+  color: #122;
+} */

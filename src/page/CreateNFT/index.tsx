@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { UploadImage } from "./UploadImage";
+
 import { NameDes } from "./NameDes";
 import { ReviewMint } from "./ReviewMint";
-import { attributeType } from "../../types";
+import { nftType } from "../../types";
 import { IPFS } from "../../service/api-ipfs";
-import { useAction, useStore } from "../../hooks";
+import { useAction, useStore } from "../../hook";
 import { NFTContract } from "../../helper";
 import { Done } from "./Done";
 
@@ -18,23 +19,18 @@ type stateType = {
   currentSteps: steps;
 };
 
-type nftType = {
-  image: string;
-  name: string;
-  description: string;
-
-  attributes?: attributeType[];
+const initState = {
+  currentSteps: steps.UPLOAD_IMAGE,
 };
 
+const initNFT = {
+  image: "",
+  description: "",
+  name: "",
+};
 const CreateNFT = () => {
-  const [state, setState] = useState<stateType>({
-    currentSteps: steps.DONE,
-  });
-  const [NFT, setNFT] = useState<nftType>({
-    image: "",
-    description: "",
-    name: "",
-  });
+  const [state, setState] = useState<stateType>(initState);
+  const [NFT, setNFT] = useState<nftType>(initNFT);
   const { setMessageLoading, setNotLoading } = useAction();
   const { store } = useStore();
 
@@ -46,7 +42,10 @@ const CreateNFT = () => {
     setState({ ...state, currentSteps: steps.REWIEW });
     setNFT({ ...NFT, name, description });
   };
-
+  const onRefresh = () => {
+    setState(initState);
+    setNFT(initNFT);
+  };
   const saveMetaData = async (): Promise<string> => {
     const { data } = await IPFS().uploadJSON(NFT);
     return data;
@@ -58,19 +57,21 @@ const CreateNFT = () => {
       // mint NFT
       console.log(store.activeAccount);
 
+      setMessageLoading("Minting...");
       const { contract } = await NFTContract(store.activeAccount);
       const mintTx = await contract.mintNft(URI);
-
+      setMessageLoading("Minting (Waiting to mine...)");
       await mintTx.wait(1);
+      setState({ currentSteps: steps.DONE });
     } catch (error) {
       console.log(error);
     } finally {
+      setNotLoading();
     }
-    setNotLoading();
   };
   const step = ["Upload Image", "Name & Description", "Review & Mint", "Done"];
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-screen relative">
       <div className="absolute top-1/2 -translate-y-1/2 left-8">
         <ul className="steps steps-vertical">
           {step.map((item, index) => {
@@ -89,9 +90,9 @@ const CreateNFT = () => {
           })}
         </ul>
       </div>
-      <div className="mt-10 h-full">
-        <div className="w-full h-full flex justify-center">
-          <div className="w-[650px] h-full pb-12 flex flex-col overflow-hidden ">
+      <div className="h-full flex items-center">
+        <div className="w-full flex justify-center">
+          <div className="w-[650px] h-full flex flex-col overflow-hidden ">
             {state.currentSteps == steps.UPLOAD_IMAGE && (
               <UploadImage IPFSURI={NFT.image} onUpload={onUpload} />
             )}
@@ -114,7 +115,7 @@ const CreateNFT = () => {
                 onMint={onMint}
               />
             )}
-            {state.currentSteps == steps.DONE && <Done />}
+            {state.currentSteps == steps.DONE && <Done onRefresh={onRefresh} />}
           </div>
         </div>
       </div>

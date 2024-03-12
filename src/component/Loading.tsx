@@ -1,11 +1,10 @@
 import React from "react";
-import { useStore } from "../hooks";
+import { useStore } from "../hook";
+import { useSDK } from "@metamask/sdk-react";
 
 const Loading = () => {
   const { store } = useStore();
   const { isLoading, message } = store.loading;
-
-  console.log(store);
   if (!isLoading) return;
   return (
     <div className="absolute z-50 top-0 left-0 w-full h-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 flex justify-center items-center">
